@@ -12,9 +12,26 @@ const store = async (req, res) => {
         await Organization.create(req.body);
         return res.json({ message: "Success" });
     } catch (e) {
-        console.log(e);
         return res.json({ message: "Failed" });
     }
 }
+const update = async (req, res) => {
 
-module.exports = { store, get };
+    try {
+        const update = await Organization.updateOne({ _id: req.params.id }, req.body);
+        return res.json({ message: "success" })
+    } catch (e) {
+        return res.json({ message: "data gagal di update" });
+    }
+
+}
+const destroy = async (req, res) => {
+    try {
+        await Organization.deleteOne({ _id: req.params.id });
+        return res.json({ message: "success" })
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+module.exports = { store, get, update, destroy };

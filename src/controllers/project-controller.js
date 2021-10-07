@@ -46,6 +46,23 @@ const changeImage = async (req, res) => {
 
 }
 
+const update = async (req, res) => {
 
+    try {
+        const update = await Project.updateOne({ _id: req.params.id }, req.body);
+        return res.json({ message: "success" })
+    } catch (e) {
+        return res.json({ message: "data gagal di update" });
+    }
 
-module.exports = { store, get }
+}
+const destroy = async (req, res) => {
+    try {
+        await Project.deleteOne({ _id: req.params.id });
+        return res.json({ message: "success" })
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+module.exports = { store, get, update, destroy }

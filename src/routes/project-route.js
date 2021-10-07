@@ -9,11 +9,8 @@ router.get('/get', ProjectController.get);
 router.post('/store', [
     body('projectName').notEmpty().withMessage("project name tidak boleh kosong"), body('periode').notEmpty().withMessage("periode tidak boleh kosong")
 ], ProjectController.store);
-// router.put('/update/:id', [
-//     body('name').notEmpty().withMessage("name tidak boleh kosong"),
-//     body('score').notEmpty().withMessage("score tidak boleh kosong"),
-// ], ProjectController.update);
-// router.delete('/delete/:id', ProjectController.destroy);
+router.put('/update/:id', ProjectController.update);
+router.delete('/delete/:id', ProjectController.destroy);
 
 
 module.exports = router;
