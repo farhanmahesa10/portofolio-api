@@ -49,10 +49,7 @@ app.use('/api/project', projectRoute);
 app.use('/api/education', educationRoute);
 app.use('/api/organization', organizationRoute);
 
-
-
 router.get('/', (req, res) => {
-
   res.send('oke')
 })
 

@@ -1,7 +1,13 @@
 const Hello = require('../models/hello');
+const { validationResult } = require('express-validator');
 const fs = require('fs');
+
 const save = async (req, res) => {
 
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.json(errors);
+    }
 
     const isData = await Hello.find({});
     if (isData.length > 0) {
